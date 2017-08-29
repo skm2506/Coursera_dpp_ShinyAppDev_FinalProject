@@ -1,0 +1,64 @@
+DevDataProduct_ShinyAppPresentation_Final Project
+========================================================
+author: Shashikesh Mishra
+date: Tue Aug 29 11:31:55 2017
+autosize: true
+
+Synopsis
+========================================================
+
+This presentation is created as part of a deliverable for the course Developing Data Products as part of the Coursera Data Science Specialization.
+Under this presentation, we will demonstrate the use of application I have build to predict height of child based on parent data.
+
+This data product used dataset GaltonFamilies, in the HistData R package, to predicts height of child through his gender and the height of the parents.
+
+- shiny to build data product application
+- R-Presentation to create data product related presentations
+
+Library and Data Processing
+========================================================
+```{r}
+# Uploaded required library and GaltonFamilies data set
+library(shiny)
+library(HistData)
+data(GaltonFamilies)
+library(dplyr)
+library(ggplot2)
+# loading dataset
+data("GaltonFamilies")
+gf <- GaltonFamilies
+
+# transforming inches to cms
+gf <- gf %>% mutate(fh=father*2.54,
+                    mh=mother*2.54,
+                    mph=midparentHeight*2.54,
+                    ch=childHeight*2.54)
+
+```
+
+Summary of data set
+======================================================
+```{r, eval=TRUE, echo=FALSE}
+summary(GaltonFamilies)
+```
+
+
+Lookinng at the correlation b/w data set
+========================================================
+
+```{r, echo=FALSE, }
+plot(GaltonFamilies)
+```
+The following diagram displays the dependence of child's height from the height of mother and father and also from gender of the child. This model has the best indicators that is why we choose it.
+
+Dev Source code and App link.
+========================================================
+To display the understanding of using shiny to build an application, a simple application called Prediction of height of the child through his parents has been developed and deployed at: https://skm2506.shinyapps.io/ddp_ShinyApp_FinalProject/
+
+The application allows the user to:
+
+Select height of parents (mother and father) and gender of child. Make plot and give predicted height of child.
+
+Github repository for source at: https://github.com/skm2506/Coursera_dpp_ShinyAppDev_FinalProject
+
+
